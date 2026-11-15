@@ -1,0 +1,16 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Sheik and Kamila//Wedding Invitation//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:wedding-shek-kamila-20261220@invitation.local
+DTSTAMP:20261115T000000Z
+DTSTART:20261220T060000Z
+DTEND:20261220T073000Z
+SUMMARY:Wedding of Sheik and Kamila
+LOCATION:Shree Narayana Mahll\, Trichy
+DESCRIPTION:Nikkah at 11:30 AM IST, followed by lunch.\nVenue: Shree Narayana Mahll\, Trichy.
+URL:https://maps.app.goo.gl/zjk7ujcLuCNgr2xz7
+END:VEVENT
+END:VCALENDAR

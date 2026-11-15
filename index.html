@@ -7,9 +7,7 @@
 
     <meta name="viewport"
           content="width=device-width,
-                   initial-scale=1.0,
-                   maximum-scale=1.0,
-                   user-scalable=no">
+                 initial-scale=1.0">
 
     <title>Sheik & Kamila | Wedding Invitation</title>
 
@@ -487,6 +485,10 @@
 
             border-radius: 50%;
 
+            border: 0;
+            padding: 0;
+            appearance: none;
+
             display: flex;
             align-items: center;
             justify-content: center;
@@ -549,6 +551,11 @@
             transform:
                 translate(-50%,-50%)
                 scale(.86);
+        }
+
+        .wax:focus-visible {
+            outline: 3px solid var(--rose);
+            outline-offset: 6px;
         }
 
         .wax.gone {
@@ -625,7 +632,7 @@
         .h3 {
             left: 7%;
             bottom: 18%;
-            font-size: 14px;
+            font-size: 24px;
             animation-duration: 4.5s;
         }
 
@@ -659,96 +666,6 @@
                     rotate(8deg);
 
                 opacity: .85;
-            }
-        }
-
-
-        /* =================================================
-           ROSE PETALS
-        ================================================= */
-
-        .rose-petal {
-            position: absolute;
-            z-index: 1;
-
-            width: 12px;
-            height: 18px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #ef9eaf,
-                    #c9657f
-                );
-
-            border-radius:
-                100% 0 100% 0;
-
-            opacity: .45;
-
-            pointer-events: none;
-
-            animation:
-                petalFloat
-                ease-in-out
-                infinite;
-        }
-
-        .rp1 {
-            left: 18%;
-            top: 30%;
-            animation-duration: 7s;
-        }
-
-        .rp2 {
-            right: 18%;
-            top: 12%;
-            animation-duration: 8s;
-        }
-
-        .rp3 {
-            left: 6%;
-            top: 60%;
-            animation-duration: 9s;
-        }
-
-        .rp4 {
-            right: 8%;
-            top: 55%;
-            animation-duration: 6s;
-        }
-
-        .rp5 {
-            left: 28%;
-            top: 80%;
-            animation-duration: 8s;
-        }
-
-        .rp6 {
-            right: 30%;
-            top: 75%;
-            animation-duration: 7s;
-        }
-
-        .rp7 {
-            left: 48%;
-            top: 10%;
-            animation-duration: 9s;
-        }
-
-        @keyframes petalFloat {
-
-            0%,100% {
-                transform:
-                    translateY(0)
-                    rotate(0deg);
-            }
-
-            50% {
-                transform:
-                    translateY(-25px)
-                    translateX(12px)
-                    rotate(120deg);
             }
         }
 
@@ -1233,7 +1150,7 @@
             height: 75vh;
 
             background:
-                url("https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=1200&q=85")
+                url("images/couple-portrait.jpeg")
                 center/cover;
         }
 
@@ -1297,6 +1214,26 @@
             font-size: 11px;
 
             margin-top: 5px;
+        }
+
+        .venue-photo-link {
+            display: block;
+            width: min(100%, 220px);
+            margin: 22px auto 0;
+        }
+
+        .venue-photo-link:focus-visible {
+            outline: 2px solid var(--rose);
+            outline-offset: 4px;
+        }
+
+        .venue-photo {
+            display: block;
+            width: 100%;
+            aspect-ratio: 1.02;
+            object-fit: cover;
+            border: 1px solid rgba(184,95,117,.3);
+            border-radius: 3px;
         }
 
 
@@ -1581,38 +1518,29 @@
 
 
         /* =================================================
-           FALLING PETALS
+           FALLING HEARTS
         ================================================= */
 
-        .falling-petal {
+        .falling-heart {
             position: fixed;
 
             top: -30px;
 
             z-index: 100;
 
-            width: 9px;
-            height: 14px;
-
-            border-radius:
-                100% 0 100% 0;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #f3a5b6,
-                    #c8617c
-                );
+            color: #c8617c;
+            font-size: 14px;
+            line-height: 1;
 
             pointer-events: none;
 
             animation:
-                fallPetal
+                fallHeart
                 linear
                 forwards;
         }
 
-        @keyframes fallPetal {
+        @keyframes fallHeart {
 
             0% {
                 transform:
@@ -1621,11 +1549,18 @@
                     rotate(0deg);
             }
 
+            50% {
+                transform:
+                    translateY(50vh)
+                    translateX(calc(var(--drift) * .45))
+                    rotate(75deg);
+            }
+
             100% {
                 transform:
                     translateY(110vh)
                     translateX(var(--drift))
-                    rotate(600deg);
+                    rotate(165deg);
             }
         }
 
@@ -1687,14 +1622,6 @@
     <div class="heart h4">♡</div>
     <div class="heart h5">♥</div>
 
-    <div class="rose-petal rp1"></div>
-    <div class="rose-petal rp2"></div>
-    <div class="rose-petal rp3"></div>
-    <div class="rose-petal rp4"></div>
-    <div class="rose-petal rp5"></div>
-    <div class="rose-petal rp6"></div>
-    <div class="rose-petal rp7"></div>
-
     <div class="sparkle s1">✦</div>
     <div class="sparkle s2">✧</div>
     <div class="sparkle s3">✦</div>
@@ -1736,13 +1663,15 @@
                 <div class="flap"></div>
 
 
-                <div class="wax"
-                     id="wax"
-                     onclick="openEnvelope()">
+                <button class="wax"
+                    id="wax"
+                    type="button"
+                    aria-label="Open wedding invitation"
+                    onclick="openEnvelope()">
 
                     S & K
 
-                </div>
+                </button>
 
 
             </div>
@@ -1959,7 +1888,7 @@
                 </div>
 
                 <div class="detail-value">
-                    12:00 pm
+                    11:30 am
                 </div>
 
             </div>
@@ -1989,6 +1918,16 @@
                     ♡ View Location
 
                 </a>
+
+                 <a class="venue-photo-link"
+                    href="https://maps.app.goo.gl/zjk7ujcLuCNgr2xz7"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Open Shree Narayana Mahal in Maps">
+                    <img class="venue-photo"
+                        src="images/venue.png"
+                        alt="Shree Narayana Mahal wedding venue">
+                 </a>
 
             </div>
 
@@ -2027,7 +1966,7 @@
                 </div>
 
                 <div class="event-text">
-                    Welcome All
+                    Meet both families and share a warm welcome before the ceremony.
                 </div>
 
             </div>
@@ -2036,7 +1975,7 @@
             <div class="event">
 
                 <div class="event-time">
-                    11:30 PM
+                    11:30 AM
                 </div>
 
                 <div class="event-title">
@@ -2044,7 +1983,7 @@
                 </div>
 
                 <div class="event-text">
-                    Wish Us
+                    Keep us in your duas and bless us with your warm wishes as we begin this blessed journey together.
                 </div>
 
             </div>
@@ -2061,7 +2000,7 @@
                 </div>
 
                 <div class="event-text">
-                    Lunch & heartfelt thank you
+                    Enjoy lunch with us as we celebrate and thank you for being part of our day.
                 </div>
 
             </div>
@@ -2174,13 +2113,10 @@
 
         </p>
 
-
-        <a href="https://wa.me/919092545484"
-           target="_blank"
-           class="button">
-
-            ♡ RSVP With Us
-
+        <a class="button"
+           href="wedding.ics"
+           download>
+            Add to Calendar
         </a>
 
 
@@ -2534,7 +2470,7 @@ function setupScratch() {
         ctx.arc(
             x,
             y,
-            38,
+            58,
             0,
             Math.PI * 2
         );
@@ -2545,7 +2481,7 @@ function setupScratch() {
 
 
         if (
-            scratchCount % 8 === 0
+            scratchCount % 4 === 0
         ) {
 
             checkReveal();
@@ -2710,11 +2646,11 @@ function setupScratch() {
 
 
         /*
-           Only 25% scratching required.
+           A small cleared area is enough to reveal the invitation.
         */
 
         if (
-            percentage > .25
+            percentage > .12
         ) {
 
             revealed = true;
@@ -2765,7 +2701,7 @@ function finishScratch() {
             .add("show");
 
 
-        startFallingPetals();
+        startFallingHearts();
 
     }, 700);
 
@@ -2820,7 +2756,7 @@ document
 
 const weddingDate =
     new Date(
-        "December 20, 2026 17:00:00"
+        "December 20, 2026 11:30:00"
     ).getTime();
 
 
@@ -2919,37 +2855,37 @@ setInterval(
 
 
 /* =====================================================
-   FALLING PETALS
+   FALLING HEARTS
 ===================================================== */
 
-let petalsStarted = false;
+let heartsStarted = false;
 
 
-function startFallingPetals() {
+function startFallingHearts() {
 
-    if (petalsStarted) {
+    if (heartsStarted) {
         return;
     }
 
 
-    petalsStarted = true;
+    heartsStarted = true;
 
 
     setInterval(
-        createFallingPetal,
-        650
+        createFallingHeart,
+        1250
     );
 
 
     for (
         let i = 0;
-        i < 8;
+        i < 5;
         i++
     ) {
 
         setTimeout(
-            createFallingPetal,
-            i * 180
+            createFallingHeart,
+            i * 450
         );
 
     }
@@ -2957,48 +2893,59 @@ function startFallingPetals() {
 }
 
 
-function createFallingPetal() {
+function createFallingHeart() {
 
-    const petal =
+    const heart =
         document.createElement("div");
 
 
-    petal.className =
-        "falling-petal";
+    heart.className =
+        "falling-heart";
+
+    heart.textContent = "♥";
+
+    heart.style.color = [
+        "#c8617c",
+        "#d98799",
+        "#ad4b65"
+    ][Math.floor(Math.random() * 3)];
+
+    heart.style.fontSize =
+        (18 + Math.random() * 12) + "px";
 
 
-    petal.style.left =
+    heart.style.left =
         Math.random() * 100 + "vw";
 
 
-    petal.style.setProperty(
+    heart.style.setProperty(
         "--drift",
         (
-            Math.random() * 180 -
-            90
+            Math.random() * 110 -
+            55
         ) + "px"
     );
 
 
-    petal.style.animationDuration =
+    heart.style.animationDuration =
         (
-            6 +
-            Math.random() * 6
+            12 +
+                Math.random() * 8
         ) + "s";
 
 
-    petal.style.opacity =
-        .25 +
-        Math.random() * .55;
+    heart.style.opacity =
+        .18 +
+        Math.random() * .24;
 
 
     document.body.appendChild(
-        petal
+        heart
     );
 
 
     setTimeout(
-        () => petal.remove(),
+        () => heart.remove(),
         13000
     );
 
